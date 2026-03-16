@@ -1541,9 +1541,13 @@
   // Sticky CTA
   const stickyCta = document.getElementById('stickyCta');
   const hero = document.querySelector('.hero');
+  const pricing = document.getElementById('pricing');
   window.addEventListener('scroll', () => {
     const heroBottom = hero.getBoundingClientRect().bottom;
-    stickyCta.classList.toggle('visible', heroBottom < 0);
+    const pricingTop = pricing.getBoundingClientRect().top;
+    const pricingBottom = pricing.getBoundingClientRect().bottom;
+    const pricingVisible = pricingTop < window.innerHeight && pricingBottom > 0;
+    stickyCta.classList.toggle('visible', heroBottom < 0 && !pricingVisible);
   });
 
   // Smooth counter animation for hero stats
